@@ -1,2 +1,5 @@
+# Ignoramos los siguientes archivos
+.DS_Store
+
 # Ignoramos los siguientes directorios
 img/
