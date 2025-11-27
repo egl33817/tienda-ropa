@@ -45,6 +45,7 @@ a {
 
 aside {
     padding: 2rem;
+    padding-right: 0;
     color: var(--clr-white);
     position: sticky;
     top: 0;
@@ -57,6 +58,41 @@ aside {
 .logo {
     font-weight: 400;
     font-size: 1.7rem;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.boton-menu {
+    background-color: transparent;
+    border: 0;
+    color: var(--clr-white);
+    cursor: pointer;
+    display: flex;
+    gap: 1rem;
+    font-weight: 600;
+    padding: 1rem;
+    font-size: .95rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.boton-menu.active {
+    background-color: var(--clr-white);
+    color: var(--clr-main);
+    width: 100%;
+}
+
+.bi-hand-index-thumb-fill,
+.bi-hand-index-thumb {
+    transform: rotateZ(90deg);
+}
+
+.boton-carrito {
+    margin-top: 2rem;
 }
 
 .texto-footer {
