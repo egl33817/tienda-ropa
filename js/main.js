@@ -310,6 +310,13 @@ function agregarAlCarrito(evento)
     }
     
     actualizarNumerito()
+
+    // Guardamos el carrito en localStorage del navegador para que pueda ser leído desde carrito.html
+    // Con "JSON.stringify" convertimos el array "productosEnCarrito" en un objeto JSON.
+    localStorage.setItem("carritoTiendaRopa", JSON.stringify(productosEnCarrito))
+
+    // A partir de este momento, toda la información relativa al carrito debe obtenerse del localStorage,
+    // pues es donde tendremos una versión actualizada y centralizada de lo que hay en el carrito.
 }
 
 function actualizarNumerito()
