@@ -3,6 +3,7 @@
 :root {
     --clr-main: #4b33a8;
     --clr-main-light: #785ce9;
+    --clr-main-dark: #221655;
     --clr-white: #ececec;
     --clr-gray: #e2e2e2;
     --clr-red: #961818;
@@ -15,7 +16,16 @@
     font-family: 'Rubik', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, input, textarea {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+input,
+textarea {
     margin: 0;
 }
 
@@ -25,4 +35,91 @@ ul {
 
 a {
     text-decoration: none;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    background-color: var(--clr-main);
+}
+
+aside {
+    padding: 2rem;
+    color: var(--clr-white);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logo {
+    font-weight: 400;
+    font-size: 1.7rem;
+}
+
+.texto-footer {
+    color: var(--clr-main-light);
+    font-size: 1rem;
+}
+
+main 
+{
+    background-color: var(--clr-white);
+    margin: 1rem;
+    margin-left: 0;
+    border-radius: 2rem;
+    padding: 3rem;
+}
+
+.titulo-principal {
+    color: var(--clr-main);
+    margin-bottom: 2rem;
+}
+
+.contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+
+.producto-imagen {
+    /* Así no ocupan más del 100% del tamaño de su padre, que es la celda del grid */
+    max-width: 100%;
+    border-radius: 1rem;
+}
+
+.producto-detalles {
+    background-color: var(--clr-main);
+    color: var(--clr-white);
+    padding: .5rem;
+    border-radius: 1rem;
+    margin-top: -2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+.producto-titulo {
+    font-size: 1rem;
+}
+
+.producto-agregar {
+    border: 0;
+    background-color: var(--clr-white);
+    color: var(--clr-main);
+    padding: .5rem;
+    text-transform: uppercase;
+    border-radius: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--clr-white);
+    transition: background-color .2s, color .2s;
+}
+
+.producto-agregar:hover {
+    background-color: var(--clr-main);
+    color: var(--clr-white);
 }
