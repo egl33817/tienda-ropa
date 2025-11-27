@@ -282,7 +282,19 @@ function actualizarListaDeBotonesAgregar()
 }
 
 // Array que almacena los productos que están en el carrito de la compra.
-const productosEnCarrito = []
+let productosEnCarrito
+// En caso de que lo haya, sacamos su valor inicial de la memoria de almacenamiento del navegador.
+const productosEnCarritoLocalStorage = JSON.parse(localStorage.getItem("carritoTiendaRopa"))
+
+if (productosEnCarritoLocalStorage)
+{
+    productosEnCarrito = productosEnCarritoLocalStorage
+    actualizarNumerito()
+}
+else
+{
+    productosEnCarrito = []
+}
 
 // Función que agrega el producto seleccionado al array que gestiona el carrito de la compra.
 function agregarAlCarrito(evento)
@@ -302,7 +314,6 @@ function agregarAlCarrito(evento)
     }
     else
     {
-        console.log("Producto repetido")
         // Localizamos la posición del producto dentro del carrito de la compra.
         const posicion = productosEnCarrito.findIndex(producto => producto.id == idProducto)
         // Aumentamos la cantidad de ese producto en 1 unidad.
