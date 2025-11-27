@@ -196,6 +196,8 @@ const contenedorProductos = document.querySelector("#contenedor-productos")
 const botonesCategorias = document.querySelectorAll(".boton-categoria")
 // Título de la categoría de productos.
 const tituloPrincipal = document.getElementById("titulo-principal")
+// Array con todos los botones que agregan un producto al carrito de la compra.
+let botonesAgregar = document.querySelectorAll(".producto-agregar")
 
 // Sólo cargamos los productos de la categoría elegida en los botones del menú.
 function cargarProductos(productosElegidos) 
@@ -217,7 +219,9 @@ function cargarProductos(productosElegidos)
         `
 
         contenedorProductos.append(divProducto)
-    }) 
+    })
+
+    actualizarListaDeBotonesAgregar();
 }
 
 // La primera vez que cargue la página, cargamos todos los productos.
@@ -257,4 +261,50 @@ botonesCategorias.forEach(boton => {
     })
 })
 
-// Eliminamos 
+botonesAgregar.forEach(boton => {
+    boton.addEventListener("click", (evento) => {
+        console.log("ID del botón seleccionado: " + evento.currentTarget.id)
+    })
+})
+
+function actualizarListaDeBotonesAgregar()
+{
+    // Acxtualizamos el array de botones presentes en el main en cada momento.
+    botonesAgregar = document.querySelectorAll(".producto-agregar")
+    
+    // Agregamos un eventListener, que se gestionará a través de la función "agregarAlCarrito".
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener("click", agregarAlCarrito)
+    })
+}
+
+// Array que almacena los productos que están en el carrito de la compra.
+const productosEnCarrito = []
+
+// Función que agrega el producto seleccionado al array que gestiona el carrito de la compra.
+function agregarAlCarrito(evento)
+{
+    const idProducto = evento.currentTarget.id
+
+    const datosProductoAgregado = productos.find(producto => producto.id == idProducto)
+
+    // Si el producto no está ya en el carrito, lo agregamos sin más. 
+    // (el método "some" devuelve true/false en función de si hay al menos algún producto en 
+    // en array que cumpla la condición establecida).
+    if (!productosEnCarrito.some(producto => producto.id == idProducto))
+    {
+        // Creamos el campo "cantidad", que se añade al resto de los presentes en el producto.
+        datosProductoAgregado.cantidad = 1
+        productosEnCarrito.push(datosProductoAgregado)
+    }
+    else
+    {
+        console.log("Producto repetido")
+        // Localizamos la posición del producto dentro del carrito de la compra.
+        const posicion = productosEnCarrito.findIndex(producto => producto.id == idProducto)
+        // Aumentamos la cantidad de ese producto en 1 unidad.
+        productosEnCarrito[posicion].cantidad++
+    }
+    
+    console.log(productosEnCarrito)
+}
