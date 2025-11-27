@@ -198,6 +198,9 @@ const botonesCategorias = document.querySelectorAll(".boton-categoria")
 const tituloPrincipal = document.getElementById("titulo-principal")
 // Array con todos los botones que agregan un producto al carrito de la compra.
 let botonesAgregar = document.querySelectorAll(".producto-agregar")
+// Varible que almacena el valor del "numerito", campo de la web que muestra el número de productos que hay en el carrito.
+let numerito = document.getElementById("numerito")
+
 
 // Sólo cargamos los productos de la categoría elegida en los botones del menú.
 function cargarProductos(productosElegidos) 
@@ -306,5 +309,16 @@ function agregarAlCarrito(evento)
         productosEnCarrito[posicion].cantidad++
     }
     
-    console.log(productosEnCarrito)
+    actualizarNumerito()
+}
+
+function actualizarNumerito()
+{
+    // La función "reduce" ejecuta una función reductora sobre cada elemento de un array, devolviendo como
+    // resultado un único valor. Recibe dos parámetros, "acumulador" y "producto", de tal forma que en cada
+    // iteración se suma a "acumulador" el valor de "producto.cantidad", devolviendo al recorrer todo el 
+    // array el valor de "acumulador".
+    let cantidad = productosEnCarrito.reduce((acumulador, producto) => acumulador + producto.cantidad, 0)
+    
+    numerito.innerText = cantidad
 }
