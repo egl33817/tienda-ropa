@@ -188,11 +188,21 @@ const productos = [
 // Elementos del DOM.
 // getElementById -> permite seleccionar un elemento del DOM usando su atributo "id".
 // querySelector -> permite seleccionar elementos del DOM usando selectores CSS (id, clase, etiqueta, atributos...).
+// 
+// Elemento en el que se colocan todos los datos de los productos.
 const contenedorProductos = document.querySelector("#contenedor-productos")
+// Array con todos los botones que tengan asignada la clase "boton-categoria".
+// Añadiremos un eventListener a cada botón para que suceda algo cuando hagamos clic sobre ellos.
+const botonesCategorias = document.querySelectorAll(".boton-categoria")
+// Título de la categoría de productos.
+const tituloPrincipal = document.getElementById("titulo-principal")
 
-function cargarProductos() 
+// Sólo cargamos los productos de la categoría elegida en los botones del menú.
+function cargarProductos(productosElegidos) 
 {
-    productos.forEach(producto => {
+    contenedorProductos.innerHTML = ""
+
+    productosElegidos.forEach(producto => {
         const divProducto = document.createElement("div")
         
         divProducto.classList.add("producto")
@@ -207,7 +217,44 @@ function cargarProductos()
         `
 
         contenedorProductos.append(divProducto)
-    })
+    }) 
 }
 
-cargarProductos()
+// La primera vez que cargue la página, cargamos todos los productos.
+cargarProductos(productos)
+
+// Es mejor usar "currentTarget" que "target" a la hora de gestionar el evento, porque con "target"
+// dependemos del elemento sobre el que hayamos hecho clic. Si lo hemos hecho sobre el icono de la 
+// manita no funcionará, a pesar de ser un hijo del elemento "button", el navegador interpretará que 
+// el target fue el icono y no el "button". Sí funcionará si hemos hecho clic sobre el botón, pero es
+// un poco lotería que así vaya a suceder siempre.
+// "currentTarget", por tanto, toma como elemento clicable a todo aquello que está dentro del "button", 
+// da igual si es el propio botón o sus accesorios, como lo son en este caso los iconos.
+
+botonesCategorias.forEach(boton => {
+    boton.addEventListener("click", (evento) => {
+        // Primero quitamos la clase "active" a todos los botones.
+        botonesCategorias.forEach(boton => 
+            boton.classList.remove("active")
+        )
+
+        // Luego añadimos la clase "active" al botón que recibió el clic.
+        evento.currentTarget.classList.add("active")
+
+        // Cargamos los productos asociados al botón que recibió el clic.
+        if (evento.currentTarget.id == "todos")
+        {
+            cargarProductos(productos)
+            tituloPrincipal.innerText = "Todos los productos"
+        }
+        else
+        {
+            const productosElegidos = productos.filter(producto => producto.categoria.id == evento.currentTarget.id)
+            cargarProductos(productosElegidos)
+            const productoCategoriaElegida = productosElegidos.find(producto => producto.categoria.id == evento.currentTarget.id)
+            tituloPrincipal.innerText = productoCategoriaElegida.categoria.nombre
+        }
+    })
+})
+
+// Eliminamos 
