@@ -265,3 +265,28 @@ main {
 }
 
 /* VERSIÓN MOBILE DEL SITIO */
+@media screen and (max-width: 600px)
+{
+    /* Queremos hacer nuestro menú lateral flotante */
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    /* Colocamos el aside por encima del contenido del main */
+    aside {
+        position: fixed;
+        z-index: 9;
+        background-color: var(--clr-main);
+        display: none;
+    }
+
+    main {
+        margin: 1rem;
+        padding: 2rem
+    }
+
+    .contenedor-productos {
+        /* Dos columnas */
+        grid-template-columns: 1fr 1fr;
+    }
+}
