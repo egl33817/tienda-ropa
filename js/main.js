@@ -1,3 +1,14 @@
+// Array para almacenar los productos que están en "productos.json".
+let productos = []
+
+fetch("./js/productos.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data
+        // La primera vez que cargue la página, cargamos todos los productos.
+        cargarProductos(productos)
+    })
+
 // Elementos del DOM.
 // getElementById -> permite seleccionar un elemento del DOM usando su atributo "id".
 // querySelector -> permite seleccionar elementos del DOM usando selectores CSS (id, clase, etiqueta, atributos...).
@@ -39,9 +50,6 @@ function cargarProductos(productosElegidos)
 
     actualizarListaDeBotonesAgregar();
 }
-
-// La primera vez que cargue la página, cargamos todos los productos.
-cargarProductos(productos)
 
 // Es mejor usar "currentTarget" que "target" a la hora de gestionar el evento, porque con "target"
 // dependemos del elemento sobre el que hayamos hecho clic. Si lo hemos hecho sobre el icono de la 
