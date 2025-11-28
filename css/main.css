@@ -43,6 +43,12 @@ a {
     background-color: var(--clr-main);
 }
 
+/* Por defecto no se muestra este header, sólo es para la versión mobile de la web */
+.header-mobile
+{
+    display: none;
+}
+
 aside {
     padding: 2rem;
     padding-right: 0;
@@ -260,6 +266,11 @@ main {
     margin-left: 2rem;
 }
 
+/* Para no mostrar la X de cierre del menú mobile */
+.close-menu {
+    display: none;
+}
+
 .disabled {
     display: none;
 }
@@ -269,24 +280,78 @@ main {
 {
     /* Queremos hacer nuestro menú lateral flotante */
     .wrapper {
-        grid-template-columns: 1fr;
+        /* Todo el contenido se muestra en una columna */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
     }
 
     /* Colocamos el aside por encima del contenido del main */
     aside {
+        /* Queremos que se quede fijo, aunque será también flotante */
         position: fixed;
         z-index: 9;
         background-color: var(--clr-main);
-        display: none;
+        /* Queremos que el aside se quede bien pegado a la izquierda */
+        left: 0;
+        /* Sombreamos lo que queda por debajo del aside */
+        box-shadow: 0 0 0 100vmax rgba(0,0,0,.75);     
+        /* Este menú se mostrará u ocultará cuando lo seleccione el usuario */
+        /* display: none; */
+        /* Efecto para que el menú se oculte desplazándolo el 100% a su izda */
+        transform: translateX(-100%);
+        /* Para que no tape el contenido cuando esté visible */
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    /* Clase para hacer visible el menú lateral */
+    .aside-visible {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
     }
 
     main {
         margin: 1rem;
+        margin-top: 0;
         padding: 2rem
     }
 
     .contenedor-productos {
-        /* Dos columnas */
+        /* Mostramos los productos a dos columnas */
         grid-template-columns: 1fr 1fr;
+    }
+
+    .header-mobile {
+        padding: 1rem;
+        /* Flex para que estén el logo y el botón en la misma línea */
+        display: flex;
+        /* Separamos el logo y el botón */
+        justify-content: space-between;
+        /* Los centramos verticalmente */
+        align-items: center;
+    }
+
+    .header-mobile .logo {
+        color: var(--clr-gray);
+    }
+
+    /* Menú hamburguesa */
+    .open-menu,
+    .close-menu {
+        background-color: transparent;
+        color: var(--clr-gray);
+        border: 0;
+        font-size: 3rem;
+        cursor: pointer;
+    }
+
+    /* Colocación de la X para cerrar el menú */
+    .close-menu {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
     }
 }
