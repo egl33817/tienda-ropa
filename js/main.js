@@ -120,6 +120,27 @@ else
 // Función que agrega el producto seleccionado al array que gestiona el carrito de la compra.
 function agregarAlCarrito(evento)
 {
+    Toastify({
+        text: "Producto agregado al carrito",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #4b33a8, #785ce9)",
+            borderRadius: ".5rem",
+            textTransform: "uppercase",
+            fontSize: "1.2rem"
+        },
+        offset: {
+            x: "1.5rem",
+            y: "1.5rem"
+        },
+        onClick: function(){} // Callback after click
+    }).showToast();
+
     const idProducto = evento.currentTarget.id
 
     const datosProductoAgregado = productos.find(producto => producto.id == idProducto)

@@ -106,6 +106,27 @@ function actualizarListaBotonesEliminar()
 // Función que elimina un producto del carrito.
 function eliminarDelCarrito(evento)
 {
+    Toastify({
+        text: "Producto eliminado del carrito",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #4b33a8, #785ce9)",
+            borderRadius: ".5rem",
+            textTransform: "uppercase",
+            fontSize: "1.2rem"
+        },
+        offset: {
+            x: "1.5rem",
+            y: "1.5rem"
+        },
+        onClick: function(){} // Callback after click
+    }).showToast();
+
     const idProducto = evento.currentTarget.id
     
     // Buscamos el producto en el array productosEnArray y lo eliminamos.
