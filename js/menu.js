@@ -11,3 +11,13 @@ openMenu.addEventListener("click", () => {
 closeMenu.addEventListener("click", () => {
     aside.classList.remove("aside-visible")
 })
+
+// También queremos que cuando se haga clic en uno de los botones del menú, este se
+// cierre automáticamente. Los botones tienen la clase "boton-menu" para identificarse.
+// Tenemos acceso a "botonesCategorias" porque antes de este fichero se ha ejecutado el 
+// contenido de "main.js".
+botonesCategorias.forEach(boton => 
+    boton.addEventListener("click", () => 
+        aside.classList.remove("aside-visible")
+    )
+)
