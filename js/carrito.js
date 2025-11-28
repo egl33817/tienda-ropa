@@ -146,11 +146,25 @@ function eliminarDelCarrito(evento)
 // Función que vacía el carrito.
 function vaciarCarrito()
 {
-    productosEnCarrito.length = 0
+    Swal.fire({
+        title: "¿Estas seguro?",
+        text: `Se van a borrar ${productosEnCarrito.reduce((contador,producto) => contador + producto.cantidad, 0)} productos`,
+        icon: "warning",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, vacía el carrito"
+    }).then((result) => {
+        if (result.isConfirmed) 
+        {
+            productosEnCarrito.length = 0
 
-    localStorage.setItem("carritoTiendaRopa", JSON.stringify(productosEnCarrito))
+            localStorage.setItem("carritoTiendaRopa", JSON.stringify(productosEnCarrito))
 
-    cargarProductosEnCarrito()
+            cargarProductosEnCarrito()
+        }
+    })
 }
 
 // Función que calcula el importe total de la compra.
