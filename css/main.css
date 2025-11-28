@@ -356,4 +356,23 @@ main {
         top: 1rem;
         right: 1rem;
     }
+
+    /* Como quedan mal los artículos del carrito en horizontal cuando
+       estamos en una pantalla móvil, quitamos el subtotal para que quede
+       mejor. También se hacen otros ajustes estéticos del carrito */
+    .carrito-producto {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding-right: .5rem;
+    }
+
+    .carrito-producto-subtotal {
+        display: none;
+    }
+
+    .carrito-acciones {
+        flex-wrap: wrap;
+        row-gap: 1rem;
+    }
 }
