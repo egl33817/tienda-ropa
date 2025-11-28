@@ -303,6 +303,8 @@ main {
         /* Para que no tape el contenido cuando esté visible */
         opacity: 0;
         visibility: hidden;
+        /* Ralentizamos la aparición del aside */
+        transition: .2s;
     }
 
     /* Clase para hacer visible el menú lateral */
