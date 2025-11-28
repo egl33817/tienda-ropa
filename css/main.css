@@ -276,6 +276,20 @@ main {
 }
 
 /* VERSIÓN MOBILE DEL SITIO */
+@media screen and (max-width: 850px)
+{
+    .contenedor-productos {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 675px)
+{
+    .contenedor-productos {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 @media screen and (max-width: 600px)
 {
     /* Queremos hacer nuestro menú lateral flotante */
@@ -374,5 +388,12 @@ main {
     .carrito-acciones {
         flex-wrap: wrap;
         row-gap: 1rem;
+    }
+}
+
+@media screen and (max-width: 400px)
+{
+    .contenedor-productos {
+        grid-template-columns: 1fr;
     }
 }
