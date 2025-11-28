@@ -272,7 +272,7 @@ botonesAgregar.forEach(boton => {
 
 function actualizarListaDeBotonesAgregar()
 {
-    // Acxtualizamos el array de botones presentes en el main en cada momento.
+    // Actualizamos el array de botones presentes en el main en cada momento.
     botonesAgregar = document.querySelectorAll(".producto-agregar")
     
     // Agregamos un eventListener, que se gestionará a través de la función "agregarAlCarrito".
@@ -335,7 +335,7 @@ function actualizarNumerito()
     // La función "reduce" ejecuta una función reductora sobre cada elemento de un array, devolviendo como
     // resultado un único valor. Recibe dos parámetros, "acumulador" y "producto", de tal forma que en cada
     // iteración se suma a "acumulador" el valor de "producto.cantidad", devolviendo al recorrer todo el 
-    // array el valor de "acumulador".
+    // array el valor de "acumulador". El "0" del final indica el valor de partida de "acumulador".
     let cantidad = productosEnCarrito.reduce((acumulador, producto) => acumulador + producto.cantidad, 0)
     
     numerito.innerText = cantidad
